@@ -24,8 +24,6 @@ Route::get('/new_announcement', 'AnnouncementsController@new_Announcements');//g
 Route::post('/new_announcement', 'AnnouncementsController@add_new_Announcements');//post the form new ann
 Route::get('/list_announcement', 'AnnouncementsController@get_list_of_Announcements');//post the form new ann
 Route::get('/list_announcement_json', 'AnnouncementsController@get_list_of_Announcements_json');//post the form new ann
-Route::get('/edit_announcement/{id}','AnnouncementsController@get_Announcements_by_id');//edit announcment by id
-
-
-
+Route::get('/view_announcement/{id}','AnnouncementsController@get_Announcements_by_id');//edit announcment by id
+Route::post('/update_announcement','AnnouncementsController@update_Announcements_by_id');//edit announcment by id
 

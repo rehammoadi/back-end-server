@@ -46,7 +46,7 @@ class Announcements extends Model
 
 
     // custom query if needed!
-    private static function save_new_announcement($data){
+    public static function save_new_announcement($data){
 
 
 
@@ -61,15 +61,66 @@ class Announcements extends Model
 
     }
 
+    public static function update_announcement($data){
+        if(empty($data)){
+            return false;
+        }
+        $sql_query_update = "
+        UPDATE announcements 
+        set 
+        `title` = ? , 
+        `mespar_tokhnet` = ? ,
+        `area`= ?,
+        `merhav_tekhnon`= ?,
+        `city`= ?,
+        `address`= ?,
+        `doc_number`= ?,
+        `block_number`= ?,
+        `helka`= ?,
+        `description`= ?,
+        `note`= ?
+          WHERE id = ?
+        ";
+        $bin_params = array(
+            $data['title'],
+            $data['mespar_tokhnet'],
+            $data['area'],
+            $data['merhav_tekhnon'],
+            $data['city'],
+            $data['address'],
+            $data['doc_number'],
+            $data['block_number'],
+            $data['helka'],
+            $data['description'],
+            $data['note'],
+            $data['id']
+        );
+
+         DB::statement($sql_query_update,$bin_params);
+         return true;
+
+    }
+
+
     //get announcement to dataTable
     public static function getAnnouncement($start = 0 , $length = 20 , $search=null){
         $sql_query = "select * from announcements";
-        if (!is_null($search)){
-            $sql_query.= " Where ";
-        }
+        $params = array();
+//        if (!is_null($search)){
+//            $sql_query.= " Where title = ? OR mespar_tokhnet=? OR area =?";
+//            $params[] =
+//        }
 
+       // $params = array_merge();
         $sql_query .=" limit $length OFFSET $start";
         $r = DB::select($sql_query,array($start,$length));
+        return $r;
+    }
+
+    //get announcement to view by id
+    public static function getAnnouncementByid($id){
+        $sql_query = "select * from announcements where id=?";
+        $r = DB::select($sql_query , array($id));
         return $r;
     }
 }
