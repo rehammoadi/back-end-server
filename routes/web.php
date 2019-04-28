@@ -27,3 +27,4 @@ Route::get('/list_announcement_json', 'AnnouncementsController@get_list_of_Annou
 Route::get('/view_announcement/{id}','AnnouncementsController@get_Announcements_by_id');//edit announcment by id
 Route::post('/update_announcement','AnnouncementsController@update_Announcements_by_id');//edit announcment by id
 
+Route::get('/settings' , "SettingsController@userDetails");
