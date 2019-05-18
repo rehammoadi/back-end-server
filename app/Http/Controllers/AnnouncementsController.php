@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Announcements;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -26,6 +28,9 @@ class AnnouncementsController extends Controller
     }
 
     public function add_new_Announcements(Request $request){
+
+       /*
+
             $params= $request->all();
 
             $validator = Validator::make($request->all(), [
@@ -56,14 +61,30 @@ class AnnouncementsController extends Controller
               "helka" => htmlentities(strip_tags($params['helka'])),
               "description" => htmlentities(strip_tags($params['description'])),
               "note" => htmlentities(strip_tags($params['note'])),
+              "pic_full_name"=>,
+              "pic_small_name"=>
             );
             $obj = new Announcements(
                 $data
             );
-            $obj->save();
-            return View('ListOfAnnouncement');
+            $obj->save();*/
+
+            //add the img
+            if ($request->hasFile('image')) {
+               //  \dd($data);
+                $full_name = time().'.'.$request->file('image')->getClientOriginalExtension();
+                 echo $full_name;
+                $destination = base_path() . '/public/images';
+                //$request->file('image')->move($destination, $full_name);
+            }
+
+            
+            
+           return View('ListOfAnnouncement');
 
     }
+
+
 
     public function get_list_of_Announcements(){
 
