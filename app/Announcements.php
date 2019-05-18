@@ -40,7 +40,8 @@ class Announcements extends Model
               "block_number",
               "helka" ,
               "description",
-              "note"
+              "note",
+              "pic_full_name"
     ];
 
 
@@ -62,9 +63,14 @@ class Announcements extends Model
     }
 
     public static function update_announcement($data){
+        $custom = "";
         if(empty($data)){
             return false;
         }
+        if(isset($data['pic_full_name'])){
+            $custom = " , `pic_full_name`= ? " ;
+        }
+
         $sql_query_update = "
         UPDATE announcements 
         set 
@@ -79,6 +85,7 @@ class Announcements extends Model
         `helka`= ?,
         `description`= ?,
         `note`= ?
+        $custom
           WHERE id = ?
         ";
         $bin_params = array(
@@ -92,10 +99,13 @@ class Announcements extends Model
             $data['block_number'],
             $data['helka'],
             $data['description'],
-            $data['note'],
-            $data['id']
+            $data['note']
         );
+        if(isset($data['pic_full_name'])){
+            $bin_params[] = $data['pic_full_name'];
+        }
 
+        $bin_params[] = $data['id'];
          DB::statement($sql_query_update,$bin_params);
          return true;
 

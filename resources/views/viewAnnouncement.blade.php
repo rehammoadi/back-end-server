@@ -20,7 +20,7 @@
                                     @if ( count( $data ) > 0 )
 
 
-                                    <form method="POST" action="/update_announcement" class="needs-validation" novalidate>
+                                    <form method="POST" action="/update_announcement" class="needs-validation" novalidate enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="announcement_id" id="announcement_id" value="{{$data[0]->id}}">
                                         <div class="form-group">
@@ -84,6 +84,12 @@
                                         <div class="form-group">
                                             <label for="note">הערות</label>
                                             <textarea  class="form-control" id="note" rows="5" name="note"> {{$data[0]->note}} </textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="pic">תמונה</label>
+                                            <img src="/images/thumbnail/{{$data[0]->pic_full_name}}" />
+                                            <input type="file" class="form-control" name="image" id="image" enctype="multipart/form-data">    
                                         </div>
 
 

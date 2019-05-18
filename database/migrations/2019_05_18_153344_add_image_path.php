@@ -14,7 +14,7 @@ class AddImagePath extends Migration
      */
     public function up()
     {
-            $alter_query = "ALTER TABLE `announcements` ADD pic_full_name varchar(255) ,ADD pic_small_name varchar(255);";
+            $alter_query = "ALTER TABLE `announcements` ADD pic_full_name varchar(255);";
             DB::statement($alter_query);
     }
 
