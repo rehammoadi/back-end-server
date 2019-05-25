@@ -22,3 +22,10 @@ Route::get('/test',function (){
         'id'=>1
     ));
 });
+
+//signup
+Route::post('/signup',function (){
+    return response()->json(array(
+        'id'=>1
+    ));
+});
