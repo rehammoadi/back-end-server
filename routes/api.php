@@ -26,24 +26,6 @@ Route::get('/test',function (){
 });
 
 //signup
-Route::post('/signup',function (){
-    return response()->json(array(
-        'id'=>1
-    ));
-});
-
-Route::post('/login',function (Request $request){
-
-   // $req = json_decode($request->getContent(), true);
-    $req =  $request->all();
-    if($req['username'] && $req['password'] ){
-        return response()->json(
-               ['userData'=>['work'=>'work']]//$request->all()
-        );
-    }else{
-        return response()->json(
-              ['userData'=>[]]//$request->all()
-            
-        );
-    }
-});
+Route::post('/signup','BaseApi@signup_new_user');
+//login
+Route::post('/login','BaseApi@login_user');
