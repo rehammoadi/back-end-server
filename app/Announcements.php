@@ -133,4 +133,20 @@ class Announcements extends Model
         $r = DB::select($sql_query , array($id));
         return $r;
     }
+
+
+
+
+
+
+    //API 
+    public static function getLastNotices(){
+       /* $sql_query = "select * from announcements
+        WHERE created_at >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+        AND created_at < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY";*/
+        $sql_query = "select * from announcements";
+        $res = DB::select($sql_query);
+        return $res;
+
+    }
 }

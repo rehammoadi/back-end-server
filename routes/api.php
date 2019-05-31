@@ -19,11 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test',function (){
-    return response()->json(array(
-        'id'=>1
-    ));
-});
+Route::get('/getLastNotices',"BaseApi@getLastNotices");
 
 //signup
 Route::post('/signup','BaseApi@signup_new_user');

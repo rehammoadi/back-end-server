@@ -22,6 +22,7 @@ class ApiUser extends Model
             "name",
             "username" ,
             "email" ,
+            "phone",
             "password"
         ];
 

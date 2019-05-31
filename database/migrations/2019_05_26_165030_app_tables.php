@@ -18,12 +18,13 @@ class AppTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->string('password');
             $table->string('username')->unique();
-            //$table->integer('level')->default(1);//1 admin , 2 sample users
+            $table->integer('active')->default(1);//0 not active , 1 active
+            $table->integer('subscribed')->default(0);//0 not subscribed , 1 subscribed
             //$table->ipAddress('visitor')->nullable();
             //$table->integer('acl_permission')->default(1);// 1 all , 2 can modified , 3 can see only
-            $table->rememberToken();
             $table->timestamps();
         });
     }

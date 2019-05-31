@@ -30,7 +30,7 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <a type="button" class="btn btn-primary" href="/new_announcement">New</a>
+                                <a type="button" class="btn btn-primary" href="/new_announcement">מודעה חדשה</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <a type="button" class="btn btn-primary" href="/list_announcement">List</a>
+                                <a type="button" class="btn btn-primary" href="/list_announcement">רשימת מודעות</a>
 
                             </div>
                         </div>
@@ -48,18 +48,21 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <a type="button" class="btn btn-primary" href="/settings">Settings</a>
+                                <a type="button" class="btn btn-primary" href="/settings">הגדרות</a>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <a type="button" class="btn btn-primary" href="/settings">בקשות חדשות</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
-
-
-                        Testing
-
 
                 </div>
 

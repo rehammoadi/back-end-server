@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\ApiUser;
 use Illuminate\Database\QueryException;
+use App\Announcements;
 
 class BaseApi extends Controller
 {
@@ -33,6 +34,7 @@ class BaseApi extends Controller
             "name"=>htmlentities(strip_tags($params['name'])),
             "username" => htmlentities(strip_tags($params['username'])),
             "email" => htmlentities(strip_tags($params['email'])),
+            "phone" => htmlentities(strip_tags($params['phone'])),
             "password" => htmlentities(strip_tags($params['password']))
           );
           $user = new ApiUser(
@@ -44,11 +46,9 @@ class BaseApi extends Controller
           try{
                     // insert the entry
                     $user->save();
-
+                    $data['true'] = true;
                     return response()->json(array(
-                        'userData'=>[
-                                'true'=>true
-                        ]
+                        'userData'=>$data
                     ));
              }catch (QueryException $e) {
                          return response()->json(array(
@@ -107,5 +107,24 @@ class BaseApi extends Controller
 
     }
 
+    //get Last Notices function
+
+    public function getLastNotices(Request $request){
+
+        $data = $request->all();
+
+        //check if valid requet
+       // if(isset($data['fromApp']) && $data['fromApp']==true){
+
+            $lastData = Announcements::getLastNotices();
+           
+            return response()->json(
+               
+                    ["lastNotices"=>$lastData]
+                    
     
+            );
+       // }
+       
+    }
 }
