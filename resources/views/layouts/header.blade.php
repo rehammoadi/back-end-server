@@ -105,12 +105,7 @@
                   <p>רשימת משתמשים</p>
                 </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="/settings">
-              <i class="material-icons">bubble_chart</i>
-              <p>הגדות</p>
-            </a>
-          </li>
+         
           <li class="nav-item ">
             <a class="nav-link" href="#">
               <i class="material-icons">location_ons</i>
@@ -123,6 +118,12 @@
               <p>בקשות חדשות</p>
             </a>
           </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/settings">
+                <i class="material-icons">bubble_chart</i>
+                <p>הגדרות משתמש</p>
+              </a>
+            </li>
         </ul>
       </div>
     </div>

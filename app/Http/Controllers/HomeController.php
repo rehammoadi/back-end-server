@@ -55,7 +55,7 @@ class HomeController extends Controller
         $data['last_notices']  = Announcements::getLastNotices_home();
 
         //get the x last users regestred to the app
-
+        $data['last_users']  = ApiUser::getLastRegUsers();
 
 
         return $data;
