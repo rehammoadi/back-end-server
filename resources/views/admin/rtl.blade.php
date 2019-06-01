@@ -127,7 +127,7 @@
                           <table class="table">
                             <tbody>
 
-                              @if ( count( $res ) > 0 )
+                              @if ( count( $res['last_notices'] ) > 0 )
                                 @foreach ($res['last_notices'] as $noti)
                                   <tr>
                                       <td style="width: 100%;">{{ $noti->title }}</td>

@@ -153,6 +153,8 @@ class Announcements extends Model
         $res = DB::select($sql_query);
         if(!empty($res)){
                 return $res;
+        }else{
+            return 0;
         }
     }
 
