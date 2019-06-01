@@ -37,8 +37,12 @@
                   <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                   </div>
+                 
                   <p class="card-category">מודעות</p>
-                  <h3 class="card-title">12
+                  <h3 class="card-title"> 
+                  @if ( count( $res ) > 0 )
+                    {{$res['number_of_notices']}}
+                  @endif
                     <small> מודעות</small>
                   </h3>
                 </div>
@@ -57,7 +61,10 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">כמות משתמים</p>
-                  <h3 class="card-title">8</h3>
+                  <h3 class="card-title">  
+                    @if ( count( $res ) > 0 )
+                      {{$res['number_of_users']}}
+                    @endif</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -119,16 +126,28 @@
                         <div class="tab-pane active" id="profile">
                           <table class="table">
                             <tbody>
-                             
-                               <tr>
-                                <td>מודעה א</td>
-                                <td class="td-actions" style="float: left;">
-                                  <button type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm text-left">
-                                    <i class="material-icons">edit</i>
-                                  </button>
+
+                              @if ( count( $res ) > 0 )
+                                @foreach ($res['last_notices'] as $noti)
+                                  <tr>
+                                      <td style="width: 100%;">{{ $noti->title }}</td>
+                                    
+
+                                      <td class="td-actions" style="float: left;" >
+                                      
+                                        <a href="/view_announcement/{{ $noti->id }}" type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm">
+                                            עריכה <i class="material-icons">edit</i>
+                                        </a>
+                                    
+                                      </td>
+                                    </tr>
+
+
+                                 @endforeach
+                              @endif
                               
-                                </td>
-                              </tr>
+
+                              
                                 
                                 
                             </tbody>

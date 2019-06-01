@@ -134,12 +134,27 @@ class Announcements extends Model
         return $r;
     }
 
+    //function to the home page
+    public static function getCountOfNotices_home()
+    {
+        $res = DB::table('announcements')->count();
+        if(!empty($res)){
+                return $res;
+        }
+    }
+    //getLastNotices
+    public static function getLastNotices_home()
+    {
+        $sql_query =   "select * from announcements
+                        order by created_at desc
+                        limit 5";
+        $res = DB::select($sql_query);
+        if(!empty($res)){
+                return $res;
+        }
+    }
 
-
-
-
-
-    //API 
+    //API/////////////////API//////////////API//////////////API 
     public static function getLastNotices(){
        /* $sql_query = "select * from announcements
         WHERE created_at >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
