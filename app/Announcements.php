@@ -140,6 +140,8 @@ class Announcements extends Model
         $res = DB::table('announcements')->count();
         if(!empty($res)){
                 return $res;
+        }else{
+            return 0;
         }
     }
     //getLastNotices
