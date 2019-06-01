@@ -1,0 +1,176 @@
+  @extends('layouts.app')
+  @extends('layouts.header')
+  @section('content')
+  <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+              <a class="navbar-brand" href="#pablo">פרטי המשתמש באפלקציה<div class="ripple-container"></div></a>
+            </div>
+
+          
+      
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                      <li>
+                          <a href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                              התנתק
+                          </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                          </form> 
+                      </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+           
+           
+           
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">בקשות של משתמש</p>
+                  <h3 class="card-title">0</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i>  <a href="/new_announcement">פרטים נוספים</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                      <i class="material-icons">feedback </i>
+                  </div>
+                  <p class="card-category"> עירעורים של משתמש</p>
+                  <h3 class="card-title">0</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> <a href="/new_announcement">פרטים נוספים</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
+          <div class="row">
+
+              <div class="col-lg-6 col-md-12">
+                 
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-primary">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <span class="nav-tabs-title"> 
+                              @if ( count( $res ) > 0 )
+                              פרטי משתמש :  {{ $res[0]->name }}
+                              @endif
+                          
+                          
+                          </span>
+                        
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="card-body">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                          <table class="table">
+                            <tbody>
+
+                              @if ( count( $res ) > 0 )
+                                
+                                  <tr>
+                                      <td > שם  :</td>
+                                      <td >{{ $res[0]->name }}</td>
+                                  </tr>   
+                                  
+                                  <tr>
+                                      <td > דוא״ל :</td>
+                                      <td >{{ $res[0]->email }}</td>
+                                  </tr>   
+                                  <tr>
+                                      <td >טלפון :</td>
+                                      <td >{{ $res[0]->phone   }}</td>
+                                  </tr>   
+                                  
+                                  <tr>
+                                      <td > שם משתמש :</td>
+                                      <td >{{ $res[0]->username }}</td>
+                                  </tr>   
+                                  <tr>
+                                      <td > מצב :</td>
+                                      <td >
+                                        @if ($res[0]->active  ==1)
+                                            פעיל
+                                        @else
+                                           לא פעיל
+                                        @endif
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td > רשום לקבלת התראות :</td>
+                                      <td >
+                                        @if ($res[0]->subscribed  ==1)
+                                            רשום
+                                        @else
+                                           לא רשום
+                                        @endif
+                                      </td>
+                                  </tr>    
+                                  <tr>
+                                      <td >  תאריך הרשמה:</td>
+                                      <td >
+                                          
+                                        {{date('Y-m-d', strtotime($res[0]->created_at))}}  
+                                          
+                                      </td>
+                                  </tr>    
+                                               
+                             
+
+
+                                
+                              @endif
+                              
+
+                              
+                                
+                                
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                  </div>
+       
+          </div>
+    
+        </div>
+        @endsection
+
+        @extends('layouts.footer')
