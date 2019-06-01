@@ -154,7 +154,7 @@ class Announcements extends Model
         if(!empty($res)){
                 return $res;
         }else{
-            return 0;
+            return array();
         }
     }
 
