@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Announcements;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Illuminate\Support\MessageBag;
+use Image;
 
 
 class AnnouncementsController extends Controller
@@ -26,23 +29,55 @@ class AnnouncementsController extends Controller
     }
 
     public function add_new_Announcements(Request $request){
-            $params= $request->all();
 
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|max:255',
-                'number' => 'required',
+      
+
+        $params= $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'number' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+
+
+            return redirect('new_announcement')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+        //add the img to the folder and same the file name in db
+        if ($request->hasFile('image')) {
+        //  \dd($data);
+        // $full_name = time().'.'.$request->file('image')->getClientOriginalExtension();
+            // echo $full_name;
+        // $destination = base_path() . '/public/images';
+            //$request->file('image')->move($destination, $full_name);
+
+
+            $this->validate($request, [
+                'image' => 'mimes:jpeg,png,jpg,gif,svg',
             ]);
+    
+    
+            $image = $request->file('image');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();//the name for the same in thumbnail and images 
+            
+            //add to the thumbnail folder
+            $destinationPath = public_path('/images/thumbnail');
+            $img = Image::make($image->getRealPath());
+            $img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+    
+            //add to the images folder the full size 
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['imagename']);
 
-            if ($validator->fails()) {
-
-
-                return redirect('new_announcement')
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-
-
+        }
+      
         $data = array(
               "user_created"=>Auth::id(),
               "title" => htmlentities(strip_tags($params['title'])),
@@ -56,6 +91,7 @@ class AnnouncementsController extends Controller
               "helka" => htmlentities(strip_tags($params['helka'])),
               "description" => htmlentities(strip_tags($params['description'])),
               "note" => htmlentities(strip_tags($params['note'])),
+              "pic_full_name"=> isset($input['imagename']) ? $input['imagename']: NULL
             );
             $obj = new Announcements(
                 $data
@@ -64,6 +100,8 @@ class AnnouncementsController extends Controller
             return View('ListOfAnnouncement');
 
     }
+
+
 
     public function get_list_of_Announcements(){
 
@@ -134,21 +172,66 @@ class AnnouncementsController extends Controller
             abort(404, 'error action.');
         }
 
-        $data = array(
-            "id"=>$params['announcement_id'],
-            "user_created"=>Auth::id(),//need to change , who updated this item
-            "title" => htmlentities(strip_tags($params['title'])),
-            "mespar_tokhnet" => htmlentities(strip_tags($params['number'])),
-            "area" => htmlentities(strip_tags($params['area'])),
-            "merhav_tekhnon" => htmlentities(strip_tags($params['merhav_tekhnon'])),
-            "city" => htmlentities(strip_tags($params['city'])),
-            "address" => htmlentities(strip_tags($params['address'])),
-            "doc_number" => htmlentities(strip_tags($params['doc_number'])),
-            "block_number" => htmlentities(strip_tags($params['block_number'])),
-            "helka" => htmlentities(strip_tags($params['helka'])),
-            "description" => htmlentities(strip_tags($params['description'])),
-            "note" => htmlentities(strip_tags($params['note'])),
-        );
+        if ($request->hasFile('image')) {
+            
+                $this->validate($request, [
+                    'image' => 'mimes:jpeg,png,jpg,gif,svg',
+                ]);
+        
+        
+                $image = $request->file('image');
+                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();//the name for the same in thumbnail and images 
+                
+                //add to the thumbnail folder
+                $destinationPath = public_path('/images/thumbnail');
+                $img = Image::make($image->getRealPath());
+                $img->resize(100, 100, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['imagename']);
+        
+                //add to the images folder the full size 
+                $destinationPath = public_path('/images');
+                $image->move($destinationPath, $input['imagename']);
+
+
+                    $data = array(
+                        "id"=>$params['announcement_id'],
+                        "user_created"=>Auth::id(),//need to change , who updated this item
+                        "title" => htmlentities(strip_tags($params['title'])),
+                        "mespar_tokhnet" => htmlentities(strip_tags($params['number'])),
+                        "area" => htmlentities(strip_tags($params['area'])),
+                        "merhav_tekhnon" => htmlentities(strip_tags($params['merhav_tekhnon'])),
+                        "city" => htmlentities(strip_tags($params['city'])),
+                        "address" => htmlentities(strip_tags($params['address'])),
+                        "doc_number" => htmlentities(strip_tags($params['doc_number'])),
+                        "block_number" => htmlentities(strip_tags($params['block_number'])),
+                        "helka" => htmlentities(strip_tags($params['helka'])),
+                        "description" => htmlentities(strip_tags($params['description'])),
+                        "note" => htmlentities(strip_tags($params['note'])),
+                        "pic_full_name"=> isset($input['imagename']) ? $input['imagename']: NULL
+                        
+                    );
+    
+            }else{
+                $data = array(
+                    "id"=>$params['announcement_id'],
+                    "user_created"=>Auth::id(),//need to change , who updated this item
+                    "title" => htmlentities(strip_tags($params['title'])),
+                    "mespar_tokhnet" => htmlentities(strip_tags($params['number'])),
+                    "area" => htmlentities(strip_tags($params['area'])),
+                    "merhav_tekhnon" => htmlentities(strip_tags($params['merhav_tekhnon'])),
+                    "city" => htmlentities(strip_tags($params['city'])),
+                    "address" => htmlentities(strip_tags($params['address'])),
+                    "doc_number" => htmlentities(strip_tags($params['doc_number'])),
+                    "block_number" => htmlentities(strip_tags($params['block_number'])),
+                    "helka" => htmlentities(strip_tags($params['helka'])),
+                    "description" => htmlentities(strip_tags($params['description'])),
+                    "note" => htmlentities(strip_tags($params['note'])),
+                    
+                );
+            }
+
+        
         $update_status = Announcements::update_announcement($data);
         //if success to update return true
         if($update_status){

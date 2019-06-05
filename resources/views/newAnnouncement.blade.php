@@ -27,7 +27,7 @@
                                         </h2>
 
 
-                                        <form method="POST" action="new_announcement" class="needs-validation" novalidate>
+                                        <form method="POST" action="new_announcement" class="needs-validation" novalidate enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <div class="form-group">
                                                 <label for="title">כותרת</label>
@@ -86,26 +86,7 @@
 
 
 
-                                          {{--  <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Example select</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" name="exampleFormControlSelect1">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect2">Example multiple select</label>
-                                                <select multiple class="form-control" id="exampleFormControlSelect2" name="exampleFormControlSelect2">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>--}}
+                                          
                                             <div class="form-group">
                                                 <label for="description">תאור כללי</label>
                                                 <textarea dir="rtl" class="form-control" id="description" rows="5" name="description"></textarea>
@@ -116,7 +97,11 @@
                                                 <textarea dir="rtl" class="form-control" id="note" rows="5" name="note"></textarea>
                                             </div>
 
-
+                                            <div class="form-group">
+                                                <label for="pic">תמונה</label>
+                                                <input type="file" class="form-control" name="image" id="image" enctype="multipart/form-data">    
+                                            </div>
+                                              
 
                                             <button type="submit"  class="btn btn-primary">Submit</button>
                                         </form>

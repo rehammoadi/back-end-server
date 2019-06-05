@@ -40,7 +40,8 @@ class Announcements extends Model
               "block_number",
               "helka" ,
               "description",
-              "note"
+              "note",
+              "pic_full_name"
     ];
 
 
@@ -62,9 +63,14 @@ class Announcements extends Model
     }
 
     public static function update_announcement($data){
+        $custom = "";
         if(empty($data)){
             return false;
         }
+        if(isset($data['pic_full_name'])){
+            $custom = " , `pic_full_name`= ? " ;
+        }
+
         $sql_query_update = "
         UPDATE announcements 
         set 
@@ -79,6 +85,7 @@ class Announcements extends Model
         `helka`= ?,
         `description`= ?,
         `note`= ?
+        $custom
           WHERE id = ?
         ";
         $bin_params = array(
@@ -92,10 +99,13 @@ class Announcements extends Model
             $data['block_number'],
             $data['helka'],
             $data['description'],
-            $data['note'],
-            $data['id']
+            $data['note']
         );
+        if(isset($data['pic_full_name'])){
+            $bin_params[] = $data['pic_full_name'];
+        }
 
+        $bin_params[] = $data['id'];
          DB::statement($sql_query_update,$bin_params);
          return true;
 
@@ -122,5 +132,40 @@ class Announcements extends Model
         $sql_query = "select * from announcements where id=?";
         $r = DB::select($sql_query , array($id));
         return $r;
+    }
+
+    //function to the home page
+    public static function getCountOfNotices_home()
+    {
+        $res = DB::table('announcements')->count();
+        if(!empty($res)){
+                return $res;
+        }else{
+            return 0;
+        }
+    }
+    //getLastNotices
+    public static function getLastNotices_home()
+    {
+        $sql_query =   "select * from announcements
+                        order by created_at desc
+                        limit 5";
+        $res = DB::select($sql_query);
+        if(!empty($res)){
+                return $res;
+        }else{
+            return array();
+        }
+    }
+
+    //API/////////////////API//////////////API//////////////API 
+    public static function getLastNotices(){
+       /* $sql_query = "select * from announcements
+        WHERE created_at >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+        AND created_at < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY";*/
+        $sql_query = "select * from announcements";
+        $res = DB::select($sql_query);
+        return $res;
+
     }
 }

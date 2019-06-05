@@ -47,9 +47,7 @@ class UsersModel extends Model
     public static function getUserDetails($id){
             $sql_query = "SELECT * FROM users WHERE id=?";
             $data = DB::select($sql_query,array($id));
-
             return $data;
-
     }
 
     // custom query if needed!

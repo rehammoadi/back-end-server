@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,8 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test',function (){
-    return response()->json(array(
-        'id'=>1
-    ));
-});
+Route::get('/getLastNotices',"BaseApi@getLastNotices");
+
+//signup
+Route::post('/signup','BaseApi@signup_new_user');
+//login
+Route::post('/login','BaseApi@login_user');
