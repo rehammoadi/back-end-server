@@ -25,3 +25,8 @@ Route::get('/getLastNotices',"BaseApi@getLastNotices");
 Route::post('/signup','BaseApi@signup_new_user');
 //login
 Route::post('/login','BaseApi@login_user');
+
+//new new_objection
+Route::post('/new_objection','BaseApi@NewObjection');
+//report problem
+Route::post('/new_problem','BaseApi@NewProblemInAnnouncement');

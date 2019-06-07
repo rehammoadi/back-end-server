@@ -28,7 +28,15 @@ class ApiUser extends Model
         ];
 
 
-
+        public static function login_process($data){
+                # get the count of active users
+                $res = DB::select("select * from app_users where username = ? AND password =?",array($data['username'],$data['password']));
+                if(!empty($res[0])){
+                        return $res[0];
+                }else{
+                    return false;
+                }
+        }
         public static function getCountOfUsers()
         {
             # get the count of active users
@@ -74,4 +82,6 @@ class ApiUser extends Model
           
 
         }
+
+        
 }
