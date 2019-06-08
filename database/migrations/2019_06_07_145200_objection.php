@@ -22,6 +22,7 @@ class Objection extends Migration
             $table->string('cause_text');
             $table->string('app_user_id');
             $table->string('announcement_id');
+            $table->integer('processed')->default(0);
             $table->timestamps();
         });
     }

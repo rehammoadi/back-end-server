@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','level','phone'
     ];
 
     /**
@@ -26,4 +26,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public static function new_worker($data=null)
+    {
+        $query="INSERT INTO `users`(`name`, `email`, `password`, `phone`, `level`) VALUES ('ronenamon','email@email.com','12312312','0525106663',2)";
+
+        // 'name' =>  $data['name'],
+        //   'email' => $data['email'],
+        //   'phone'=>  isset($data['phone']) ? $data['phone'] : null,
+        //   'password' => bcrypt($data['password']),
+        //   'level' => ($data['level']=='admin' ? 1 : 2),
+    }
 }

@@ -49,7 +49,7 @@ class UserRequests extends Controller
                 "data"=>$response_data,
                 "draw"=> $params['draw'],
                 "recordsTotal"=>  $countAll,
-                "recordsFiltered"=> count($response_data)
+                "recordsFiltered"=> $countAll
             ));
     
         return $data;

@@ -8,7 +8,7 @@
                     <div class="card-header card-header-tabs card-header-primary">
                       <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
-                          <span class="nav-tabs-title">משתמשים</span>
+                          <span class="nav-tabs-title">רשימת עובדים</span>
                         
                         </div>
                       </div>
@@ -17,14 +17,13 @@
                     <div class="card-body">
                       <div class="tab-content">
                         <div class="tab-pane active" id="profile">
-                          <table id="appUsersListTbl" class="table display" style="width:100%">
+                          <table id="workerListTbl" class="table display" style="width:100%">
                               <thead>
                                   <tr>
                                       <th>שם מלא</th>
                                       <th>דוא״ל</th>
                                       <th>מספר טלפון</th>
-                                      <th>שם משתמש</th>
-                                      <th>פעיל/לא פעיל</th>
+                                      <th>הרשאות</th>
                                       <th>תאריך הרשמה</th>
                                       <th>פרטים נוספים</th>
                                       
@@ -33,6 +32,9 @@
                             <tbody>
                             </tbody>
                           </table>
+                          <hr>
+                          <button type="submit"  class="btn btn-primary" onclick="location.href='/add_new_worker'">הוספת עובד חדש</button>
+
                         </div>
                         
                       

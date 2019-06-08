@@ -1,5 +1,50 @@
+
+function get_noti(){
+    // var feedback = $.ajax({
+    //     type: "POST",
+    //     url: "feedback.php",
+    //     async: false
+    // }).success(function(){
+    //     setTimeout(function(){get_fb();}, 10000);
+    // }).responseText;
+
+    // $('div.feedback-box').html(feedback);
+    console.log("work last 7 noti");//last 7 noti
+}
+
 $(document).ready(function () {
+
+
+    // setInterval(
+    //     function(){
+    //         get_noti();
+    //     }, 3000);
+
+
+
         console.log('start!');
+
+        //רשימת עובדים
+        $('#workerListTbl').DataTable( {
+            "searching": false,
+            "serverSide": true,
+            "processing": true,
+            "method":"GET",
+            "ajax": "/worker_list_json",
+            "columns": [
+                { "data": "name" },
+                { "data": "email" },
+                { "data": "phone" },
+                { "data": "level" },
+                { "data": "created_date" },
+                { "data": "action" },
+            ]
+            } );
+
+
+
+
+
         $('#objectionsTbl').DataTable( {
         "searching": false,
         "serverSide": true,

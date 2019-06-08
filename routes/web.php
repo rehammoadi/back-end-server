@@ -30,12 +30,18 @@ Route::post('/update_announcement','AnnouncementsController@update_Announcements
 Route::get('/list_announcement', 'AnnouncementsController@get_list_of_Announcements');//post the form new ann
 Route::get('/list_announcement_json', 'AnnouncementsController@get_list_of_Announcements_json');//post the form new ann
 
-//
-Route::get('/settings' , "SettingsController@userDetails");
+//worker_list
+Route::get('/add_new_worker' , "SettingsController@add_new_worker");
+Route::post('/new_worker' , "SettingsController@new_worker_post");
+Route::get('/worker_list' , "SettingsController@worker_list");
+Route::get('/worker_list_json' , "SettingsController@worker_list_json");
+Route::get('/worker_settings/{id}' , "SettingsController@workerDetails");
 
 
 //objections with problems
 Route::get('/list_problem_objections' , "Problem_objections@getAllProblemsObjections");
+Route::get('/view_objection_details/{id}' , "Problem_objections@getObjectionById");
+Route::post('/objectionProcessed' , "Problem_objections@objectionProcessed");
 
 //objections list json
 Route::get('/getObjections_json' , "Problem_objections@getObjections_json");

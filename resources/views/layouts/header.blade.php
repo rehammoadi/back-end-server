@@ -1,30 +1,10 @@
 @section('header')
-{{-- <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-<title>הודעות תכנון ובניה</title>
-
-<!-- Styles -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
---}}
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
   <meta charset="utf-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -94,15 +74,15 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">library_books</i>
+            <a class="nav-link" href="/worker_list">
+              <i class="material-icons">person</i>
               <p>רשימת עובדים</p>
             </a>
           </li>
           <li class="nav-item ">
                 <a class="nav-link" href="/app_users_list">
                   <i class="material-icons">person</i>
-                  <p>רשימת משתמשים</p>
+                  <p>  רשימת משתמשים </p>
                 </a>
           </li>
          
@@ -114,15 +94,72 @@
             </a>
           </li>
           <li class="nav-item ">
-              <a class="nav-link" href="/settings">
-                <i class="material-icons">bubble_chart</i>
-                <p>הגדרות משתמש</p>
-              </a>
-            </li>
+            <a class="nav-link" href="/list_problem_objections">
+              <i class="material-icons">notifications</i>
+              <p>ערעורים ותקלות</p>
+            </a>
+          </li>
+        
         </ul>
       </div>
     </div>
 
 
 
+    {{-- start  --}}
+
+    <div class="main-panel">
+      
+           <!-- Navbar -->
+           <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+              <div class="container-fluid">
+                <div class="navbar-wrapper">
+                
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                
+                  <ul class="navbar-nav">
+               
+                    <li class="nav-item dropdown">
+                      <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">notifications</i>
+                        <span class="notification">8</span>
+                        
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">סתם מודעה</a>
+                        <a class="dropdown-item" href="#">סתם מודעה</a>
+                        <a class="dropdown-item" href="#">סתם מודעה</a>
+                        <a class="dropdown-item" href="#">סתם מודעה</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="material-icons">person</i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#">הגדרות משתמש</a>
+                          <a class="dropdown-item" href="#">התנתק</a>
+                          
+                        </div>
+                      </li>
+                 
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <!-- End Navbar -->
+       
+       
+            <div class="content">
+          <div class="container-fluid">
+
+    {{--  --}}
 @endsection

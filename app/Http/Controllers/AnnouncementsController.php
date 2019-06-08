@@ -25,7 +25,7 @@ class AnnouncementsController extends Controller
 
 
     public function new_Announcements(){
-        return view('newAnnouncement');
+        return view('AnnouncementsView/addAnnouncementView');
     }
 
     public function add_new_Announcements(Request $request){
@@ -97,7 +97,7 @@ class AnnouncementsController extends Controller
                 $data
             );
             $obj->save();
-            return View('ListOfAnnouncement');
+            return view('AnnouncementsView/announcementsListView');
 
     }
 
@@ -152,7 +152,7 @@ class AnnouncementsController extends Controller
         if(!empty($id) && is_numeric($id)){
             $data = Announcements::getAnnouncementByid($id);
             if(!empty($data)){
-                return view('viewAnnouncement')->with(compact('data'));
+                return view('AnnouncementsView/editAnnouncementView')->with(compact('data'));
             }else{
                     echo 'not exit';
             }
@@ -171,7 +171,7 @@ class AnnouncementsController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'number' => 'required',
-            'announcement_id'=> '   required'
+            'announcement_id'=> 'required'
         ]);
 
         if ($validator->fails()) {
@@ -249,7 +249,9 @@ class AnnouncementsController extends Controller
         if($update_status){
                 $new_data = Announcements::getAnnouncementByid($params['announcement_id']);
                 if(!empty($new_data)){
-                    return redirect("/view_announcement/{$params['announcement_id']}" );
+                   
+                    //Redirect::to('view_announcement/{$params['announcement_id']}');
+                    return redirect("/view_announcement/{$params['announcement_id']}");//->compact('dataOk','Updeted');
                 }else{
                     echo 'not exit';
                 }

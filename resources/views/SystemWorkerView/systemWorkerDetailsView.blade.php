@@ -12,7 +12,7 @@
                   <div class="card-icon">
                     <i class="material-icons">info_outline</i>
                   </div>
-                  <p class="card-category">בקשות של משתמש</p>
+                  <p class="card-category">מודעות שהוסיף</p>
                   <h3 class="card-title">0</h3>
                 </div>
                 <div class="card-footer">
@@ -28,7 +28,7 @@
                   <div class="card-icon">
                       <i class="material-icons">feedback </i>
                   </div>
-                  <p class="card-category"> עירעורים של משתמש</p>
+                  <p class="card-category"> מענה על תקלות </p>
                   <h3 class="card-title">0</h3>
                 </div>
                 <div class="card-footer">
@@ -50,8 +50,8 @@
                       <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
                           <span class="nav-tabs-title"> 
-                              @if ( count( $res ) > 0 )
-                              פרטי משתמש :  {{ $res[0]->name }}
+                              @if ( count( $details ) > 0 )
+                              פרטי משתמש :  {{ $details[0]->name }}
                               @endif
                           
                           
@@ -67,51 +67,30 @@
                           <table class="table">
                             <tbody>
 
-                              @if ( count( $res ) > 0 )
+                              @if ( count( $details ) > 0 )
                                 
                                   <tr>
                                       <td > שם  :</td>
-                                      <td >{{ $res[0]->name }}</td>
+                                      <td >{{ $details[0]->name }}</td>
                                   </tr>   
                                   
                                   <tr>
                                       <td > דוא״ל :</td>
-                                      <td >{{ $res[0]->email }}</td>
+                                      <td >{{ $details[0]->email }}</td>
                                   </tr>   
                                   <tr>
                                       <td >טלפון :</td>
-                                      <td >{{ $res[0]->phone   }}</td>
+                                      <td >{{ $details[0]->phone   }}</td>
                                   </tr>   
                                   
-                                  <tr>
-                                      <td > שם משתמש :</td>
-                                      <td >{{ $res[0]->username }}</td>
-                                  </tr>   
-                                  <tr>
-                                      <td > מצב :</td>
-                                      <td >
-                                        @if ($res[0]->active  ==1)
-                                            פעיל
-                                        @else
-                                           לא פעיל
-                                        @endif
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td > רשום לקבלת התראות :</td>
-                                      <td >
-                                        @if ($res[0]->subscribed  ==1)
-                                            רשום
-                                        @else
-                                           לא רשום
-                                        @endif
-                                      </td>
-                                  </tr>    
+                                 
+                                  
+                                  
                                   <tr>
                                       <td >  תאריך הרשמה:</td>
                                       <td >
                                           
-                                        {{date('Y-m-d', strtotime($res[0]->created_at))}}  
+                                        {{date('Y-m-d', strtotime($details[0]->created_at))}}  
                                           
                                       </td>
                                   </tr>    

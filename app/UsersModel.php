@@ -44,6 +44,14 @@ class UsersModel extends Model
     ];
 
 
+    public static function getListOfWorkers($start=0,$limit=20,$search=null)
+    {
+        $sql_query = "SELECT * FROM users";
+            $params = array();
+            $sql_query .=" limit $limit OFFSET $start";
+            $r = DB::select($sql_query);
+            return $r;
+    }
     public static function getUserDetails($id){
             $sql_query = "SELECT * FROM users WHERE id=?";
             $data = DB::select($sql_query,array($id));

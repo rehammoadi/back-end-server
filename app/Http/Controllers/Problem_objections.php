@@ -9,7 +9,6 @@ use App\AnnouncementProblem;
 class Problem_objections extends Controller
 {
     //
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -48,7 +47,7 @@ class Problem_objections extends Controller
                 "data"=>$response_data,
                 "draw"=> $params['draw'],
                 "recordsTotal"=>  $countAll,
-                "recordsFiltered"=> count($response_data)
+                "recordsFiltered"=> $countAll
             ));
     
         return $data;
@@ -86,8 +85,40 @@ class Problem_objections extends Controller
         "data"=>$response_data, 
         "draw"=> $params['draw'],
         "recordsTotal"=>  $countAll,
-        "recordsFiltered"=> count($response_data)));
+        "recordsFiltered"=> $countAll
+        ));
         return $data;
        
+    }
+
+
+    public function getObjectionById($id=null)
+    {
+
+        
+
+       if(!is_null($id)){
+          $res = Objection::getObjection_byId($id);
+          if(!empty($res)){
+            return view('ObjectionsView/ObjectionDetailsView')->with(compact('res'));;
+        }else{
+            return array();
+        }
+           
+       }else{
+          return view('admin/problemsObjectionsList');
+       }
+    }
+
+    public function objectionProcessed(Request $request){
+
+        $data= $request->all();
+        $res = Objection::updateObjectionStatus($data['id']);
+        
+        if($res){
+            return ['status'=>true];
+        }else{
+            return ['status'=>false];
+        }
     }
 }
