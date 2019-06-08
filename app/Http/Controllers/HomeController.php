@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Announcements;
 use App\ApiUser;
+use App\AnnouncementProblem;
+use App\Objection;
 
 class HomeController extends Controller
 {
@@ -35,14 +37,12 @@ class HomeController extends Controller
     public function getIndexDetails()
     {
         $data = [
-            'number_of_notices'=>55,
+            'number_of_notices'=>0,
             'number_of_users'=>0,
-            'last_notices'=>[
-                ['id'=>111],
-                ['id'=>222],
-                ['id'=>333],
-            ],
+            'last_notices'=>[],
             'last_users'=>[],
+            'user_requests'=>0,
+            'user_problems_objections'=>0,
         ];
        
         //get the number of notices in the system
@@ -57,6 +57,11 @@ class HomeController extends Controller
         //get the x last users regestred to the app
         $data['last_users']  = ApiUser::getLastRegUsers();
 
+     
+         $data['user_problems_objections']  = AnnouncementProblem::count() + Objection::count();
+
+
+        //
 
         return $data;
     }

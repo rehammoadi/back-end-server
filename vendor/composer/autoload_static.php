@@ -360,6 +360,7 @@ class ComposerStaticInit4212257c091d6d6b5432732bbe896d08
     );
 
     public static $classMap = array (
+        'App\\AnnouncementProblem' => __DIR__ . '/../..' . '/app/AnnouncementProblem.php',
         'App\\Announcements' => __DIR__ . '/../..' . '/app/Announcements.php',
         'App\\ApiUser' => __DIR__ . '/../..' . '/app/ApiUser.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -373,6 +374,7 @@ class ComposerStaticInit4212257c091d6d6b5432732bbe896d08
         'App\\Http\\Controllers\\BaseApi' => __DIR__ . '/../..' . '/app/Http/Controllers/BaseApi.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\Problem_objections' => __DIR__ . '/../..' . '/app/Http/Controllers/Problem_objections.php',
         'App\\Http\\Controllers\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\AnnouncementProblem' => $baseDir . '/app/AnnouncementProblem.php',
     'App\\Announcements' => $baseDir . '/app/Announcements.php',
     'App\\ApiUser' => $baseDir . '/app/ApiUser.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -19,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\BaseApi' => $baseDir . '/app/Http/Controllers/BaseApi.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\Problem_objections' => $baseDir . '/app/Http/Controllers/Problem_objections.php',
     'App\\Http\\Controllers\\SettingsController' => $baseDir . '/app/Http/Controllers/SettingsController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

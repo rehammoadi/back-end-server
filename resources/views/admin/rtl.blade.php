@@ -80,7 +80,10 @@
                     <i class="material-icons">info_outline</i>
                   </div>
                   <p class="card-category">בקשות</p>
-                  <h3 class="card-title">0</h3>
+                  <h3 class="card-title">
+                     @if ( count( $res ) > 0 )
+                        {{$res['user_requests']}}
+                     @endif</h3></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -95,12 +98,17 @@
                   <div class="card-icon">
                       <i class="material-icons">feedback </i>
                   </div>
-                  <p class="card-category">עירעורים</p>
-                  <h3 class="card-title">0</h3>
+                  <p class="card-category">ערעורים / תקלות</p>
+                  <h3 class="card-title">
+                      @if ( count( $res ) > 0 )
+                         {{$res['user_problems_objections']}}
+                       @endif</h3></h3>
+
+                  </h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">update</i> <a href="/new_announcement">פרטים נוספים</a>
+                    <i class="material-icons">update</i> <a href="/list_problem_objections">פרטים נוספים</a>
                   </div>
                 </div>
               </div>

@@ -32,6 +32,10 @@ md.initDashboardPageCharts();
 
 });
 </script>
+
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../js/custom.js" type="text/javascript"></script>
 </body>
 
 </html>

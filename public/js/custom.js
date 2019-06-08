@@ -1,19 +1,37 @@
 $(document).ready(function () {
-    
-    $('#table_id').DataTable( {
+        console.log('start!');
+        $('#objectionsTbl').DataTable( {
+        "searching": false,
         "serverSide": true,
         "processing": true,
         "method":"GET",
-        "ajax": "/list_announcement_json",
+        "ajax": "/getObjections_json",
         "columns": [
-
-            { "data": "title" },
-            { "data": "area" },
-            { "data": "city" },
+            { "data": "user_name" },
+            { "data": "announcement_number" },
+            { "data": "block_number" },
+            { "data": "create_date" },
             { "data": "action" },
         ]
-    } );
+        } );
 
 
 
+
+
+        $('#problemsTbl').DataTable( {
+            "searching": false,
+            "serverSide": true,
+            "processing": true,
+            "method":"GET",
+            "ajax": "/getProblems_json",
+            "columns": [
+                { "data": "user_name" },
+                { "data": "announcement_number" },
+                { "data": "short_report" },
+                { "data": "create_date" },
+                { "data": "action" },
+            ]
+            } );
+        
 });

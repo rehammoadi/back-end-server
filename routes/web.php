@@ -31,3 +31,8 @@ Route::post('/update_announcement','AnnouncementsController@update_Announcements
 //
 Route::get('/settings' , "SettingsController@userDetails");
 Route::get('/view_app_user/{id}' , "AppUsers@getAppUserDetailsByID");
+Route::get('/list_problem_objections' , "Problem_objections@getAllProblemsObjections");
+//objections list json
+Route::get('/getObjections_json' , "Problem_objections@getObjections_json");
+//problems list json
+Route::get('/getProblems_json' , "Problem_objections@getProblems_json");
