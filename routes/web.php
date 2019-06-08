@@ -22,17 +22,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/new_announcement', 'AnnouncementsController@new_Announcements');//get the page to post
 Route::post('/new_announcement', 'AnnouncementsController@add_new_Announcements');//post the form new ann
-Route::get('/list_announcement', 'AnnouncementsController@get_list_of_Announcements');//post the form new ann
-Route::get('/list_announcement_json', 'AnnouncementsController@get_list_of_Announcements_json');//post the form new ann
+
 Route::get('/view_announcement/{id}','AnnouncementsController@get_Announcements_by_id');//edit announcment by id
 Route::post('/update_announcement','AnnouncementsController@update_Announcements_by_id');//edit announcment by id
 
+//Announcements
+Route::get('/list_announcement', 'AnnouncementsController@get_list_of_Announcements');//post the form new ann
+Route::get('/list_announcement_json', 'AnnouncementsController@get_list_of_Announcements_json');//post the form new ann
 
 //
 Route::get('/settings' , "SettingsController@userDetails");
-Route::get('/view_app_user/{id}' , "AppUsers@getAppUserDetailsByID");
+
+
+//objections with problems
 Route::get('/list_problem_objections' , "Problem_objections@getAllProblemsObjections");
+
 //objections list json
 Route::get('/getObjections_json' , "Problem_objections@getObjections_json");
 //problems list json
 Route::get('/getProblems_json' , "Problem_objections@getProblems_json");
+
+//users requests
+Route::get('/users_requests' , "UserRequests@getAllUserRequests");
+Route::get('/users_requests_json' , "UserRequests@getAllUserRequests_json");
+
+
+//app_users_list
+Route::get('/app_users_list' , "AppUsers@appUsersList");
+Route::get('/app_users_list_json' , "AppUsers@appUsersList_json");
+Route::get('/view_app_user/{id}' , "AppUsers@getAppUserDetailsByID");

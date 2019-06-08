@@ -114,14 +114,9 @@ class Announcements extends Model
 
     //get announcement to dataTable
     public static function getAnnouncement($start = 0 , $length = 20 , $search=null){
-        $sql_query = "select * from announcements";
+        $sql_query = "select an.* , u.name from announcements an
+                      inner join users u on(u.id = an.user_created)";
         $params = array();
-//        if (!is_null($search)){
-//            $sql_query.= " Where title = ? OR mespar_tokhnet=? OR area =?";
-//            $params[] =
-//        }
-
-       // $params = array_merge();
         $sql_query .=" limit $length OFFSET $start";
         $r = DB::select($sql_query,array($start,$length));
         return $r;

@@ -100,20 +100,15 @@
             </a>
           </li>
           <li class="nav-item ">
-                <a class="nav-link" href="/user_list">
+                <a class="nav-link" href="/app_users_list">
                   <i class="material-icons">person</i>
                   <p>רשימת משתמשים</p>
                 </a>
           </li>
          
+      
           <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">location_ons</i>
-              <p>מפה</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/users_requests">
               <i class="material-icons">notifications</i>
               <p>בקשות חדשות</p>
             </a>

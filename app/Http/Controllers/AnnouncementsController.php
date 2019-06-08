@@ -109,7 +109,7 @@ class AnnouncementsController extends Controller
 
         //return $data;
 
-        return view('ListOfAnnouncement');//->with("ann_arr" , $data);
+        return view('AnnouncementsView/announcementsListView');//->with("ann_arr" , $data);
 
     }
 
@@ -125,14 +125,26 @@ class AnnouncementsController extends Controller
 
         $response_data = array();
         $data = Announcements::getAnnouncement($start,$limit,$search);
+        $countAll = Announcements::count();
         foreach ($data as $row){
             $response_data[] = array(
                 "title" => $row->title,
+                "mespar_tokhnet" => $row->mespar_tokhnet,
                 "area" => $row->area,
-                "city" => $row->city,
+                "block_number" => $row->block_number,
+                "helka" => $row->helka,
+                "created_at" => $row->created_at,
+                "user_created" => $row->name,
                 "action"=> "<a href='/view_announcement/$row->id'>פרטים</a>");
         }
-        $data = json_encode(array("data"=>$response_data));
+        $data = json_encode(
+            array(
+                "data"=>$response_data,
+                "draw"=> $params['draw'],
+                "recordsTotal"=>  $countAll,
+                "recordsFiltered"=> count($response_data)
+            )
+        );
         return $data;
     }
 

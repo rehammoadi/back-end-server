@@ -83,5 +83,15 @@ class ApiUser extends Model
 
         }
 
+        //admin sections
+
+        public static function getAppUsersList($start=0,$limit=20,$search=null)
+        {
+            $sql_query = "SELECT * FROM app_users";
+            $params = array();
+            $sql_query .=" limit $limit OFFSET $start";
+            $r = DB::select($sql_query);
+            return $r;
+        }
         
 }

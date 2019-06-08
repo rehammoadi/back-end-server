@@ -60,7 +60,7 @@
                   <div class="card-icon">
                     <i class="material-icons">person</i>
                   </div>
-                  <p class="card-category">כמות משתמים</p>
+                  <p class="card-category">כמות משתמשים באפלקציה</p>
                   <h3 class="card-title">  
                     @if ( count( $res ) > 0 )
                       {{$res['number_of_users']}}
@@ -68,7 +68,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">person_add</i>  <a href="/new_announcement">הוספת משתמש חדש</a>
+                    <i class="material-icons">person_add</i>  <a href="/app_users_list">פרטים על משתמשים</a>
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i>  <a href="/new_announcement">פרטים נוספים</a>
+                    <i class="material-icons">local_offer</i>  <a href="/users_requests">פרטים נוספים</a>
                   </div>
                 </div>
               </div>
