@@ -17,6 +17,7 @@ class UserRequestsModel extends Model
          "mespar_gosh",
          "description",
          "cost",
+         "size"
      ];
  
  

@@ -30,3 +30,5 @@ Route::post('/login','BaseApi@login_user');
 Route::post('/new_objection','BaseApi@NewObjection');
 //report problem
 Route::post('/new_problem','BaseApi@NewProblemInAnnouncement');
+//new new_requestByUser 
+Route::post('/new_requestByUser','BaseApi@new_requestByUser');

@@ -10,6 +10,7 @@ use App\Announcements;
 use App\Objection;
 use Illuminate\Support\Facades\DB;
 use App\AnnouncementProblem;
+use App\UserRequestsModel;
 
 class BaseApi extends Controller
 {
@@ -202,5 +203,42 @@ class BaseApi extends Controller
           ));
        }
 
+    }
+
+    public function new_requestByUser(Request $request){
+
+        $params= $request->all();
+        $data = array(
+            "full_name"=>htmlentities(strip_tags($params['full_name'])),
+            "user_ID" => htmlentities(strip_tags($params['personID'])),
+            "mespar_helka" => htmlentities(strip_tags($params['helka_num'])),
+            "mespar_gosh" => htmlentities(strip_tags($params['gosh'])),
+            "size" => $params['meter_number'],
+            "description" => htmlentities(strip_tags($params['request_text'])),
+            "app_user_id" => htmlentities(strip_tags($params['app_user_id'])),
+          );
+
+
+
+          $obj = new UserRequestsModel(
+            $data
+        );
+
+
+
+        try{
+            $obj->save();
+            $obj['ok'] = true;
+                  return response()->json(array(
+                      'UserRequest'=>$obj
+                  ));
+           }catch (QueryException $e) {
+               return $e;
+                       return response()->json(array(
+                 'UserRequest'=>[
+                      'error'=>false
+                   ]
+          ));
+       }
     }
 }

@@ -72,7 +72,7 @@
                         <a href="{{ url('/home') }}">ניהול</a>
                     @else
                         <a href="{{ route('login') }}">כניסה</a>
-                        <a href="{{ route('register') }} ">הרשמה</a>
+                        {{-- <a href="{{ route('register') }} ">הרשמה</a> --}}
                     @endauth
                 </div>
             @endif
