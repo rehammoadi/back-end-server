@@ -37,12 +37,13 @@ class UserRequests extends Controller
         foreach ($data as $row){
             $response_data[] = array(
                 "full_name" => $row->name,
+                "user_ID" => $row->user_ID,
                 "mespar_helka" => $row->mespar_helka,
                 "mespar_gosh" => $row->mespar_gosh,
                 "size" => $row->size,
                 "short_text" => $row->short_text,
                 "created_at" => $row->created_at,
-                "action"=> "<a href='/view_objection_details/$row->id'>פרטים</a>");
+                "action"=> "<a href='/view_request_details/$row->id'>פרטים</a>");
         }
         $data = json_encode(
             array(
@@ -53,5 +54,22 @@ class UserRequests extends Controller
             ));
     
         return $data;
+    }
+
+
+    public function getRequestById($id=null)
+    {
+
+       if(!is_null($id)){
+          $res = UserRequestsModel::getRequest_by_id($id);
+          if(!empty($res)){
+            return view('requestDetailsView')->with(compact('res'));;
+        }else{
+            return view('admin/problemsObjectionsList');
+        }
+           
+       }else{
+          return view('admin/problemsObjectionsList');
+       }
     }
 }

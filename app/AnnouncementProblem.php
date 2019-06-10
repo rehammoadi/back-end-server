@@ -26,4 +26,14 @@ class AnnouncementProblem extends Model
         $r = DB::select($sql_query,array($start,$length));
         return $r;
     }
+
+       //get objections by id
+       public static function getProblem_byId($id){
+        $sql_query = "SELECT ap.* , au.name FROM announcementProblems ap 
+                      INNER JOIN app_users au on(au.id = ap.app_user_id)
+                      where ap.id = ?";
+       
+        $r = DB::select($sql_query,array($id));
+        return $r;
+    }
 }

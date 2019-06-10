@@ -161,8 +161,7 @@ class BaseApi extends Controller
                         'objection'=>$objection
                     ));
              }catch (QueryException $e) {
-                 return $e;
-                         return response()->json(array(
+                 return response()->json(array(
                    'objection'=>[
                         'true'=>false
                      ]
@@ -195,8 +194,7 @@ class BaseApi extends Controller
                       'AnnouncementProblem'=>$obj
                   ));
            }catch (QueryException $e) {
-               return $e;
-                       return response()->json(array(
+                return response()->json(array(
                  'AnnouncementProblem'=>[
                       'error'=>false
                    ]
@@ -206,6 +204,7 @@ class BaseApi extends Controller
     }
 
     public function new_requestByUser(Request $request){
+      
 
         $params= $request->all();
         $data = array(
@@ -233,12 +232,31 @@ class BaseApi extends Controller
                       'UserRequest'=>$obj
                   ));
            }catch (QueryException $e) {
-               return $e;
-                       return response()->json(array(
+
+            return response()->json(array(
                  'UserRequest'=>[
                       'error'=>false
                    ]
           ));
        }
+    }
+
+    public function search_data(Request $request)
+    {
+        //{"startDate":"", "endDate":"","Gosh":"","helka":"","area":"","city":"","mahoz":""};
+        $params= $request->all();
+       
+        $data = array(
+            "Gosh"=>htmlentities(      strip_tags( isset($params['Gosh'])   == true ? $params['Gosh'] : "") ),
+            "helka" => htmlentities(   strip_tags( isset($params['helka']) == true ? $params['helka'] : "") ),
+            "city" =>  isset($params['city'])  == true ? $params['city'] : ""
+          );
+
+
+          //do search by parameters
+          $res = Announcements::do_search($data);
+          return response()->json(array(
+              'search_res'=>$res    
+          ));
     }
 }

@@ -19,7 +19,7 @@ class UserRequestsModel extends Model
          "cost",
          "size"
      ];
- 
+   
  
  
      
@@ -32,4 +32,18 @@ class UserRequestsModel extends Model
          $r = DB::select($sql_query,array($start,$length));
          return $r;
      }
+
+
+     public static function getRequest_by_id($id){
+         $sql_query = "SELECT us.*,au.name  FROM user_request us 
+         inner JOIN app_users au on(au.id = us.app_user_id)
+         where us.id = ?";
+
+         $r = DB::select($sql_query,array($id));
+         return $r;
+     }
+
+
+
+
 }

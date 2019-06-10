@@ -76,7 +76,7 @@ class Problem_objections extends Controller
                 "announcement_number" => $row->announcement_id,
                 "short_report" => $row->short_report,
                 "create_date" => $row->created_at,
-                "action"=> "<a href='/view_objection_details/$row->id'>פרטים</a>",
+                "action"=> "<a href='/view_problem_details/$row->id'>פרטים</a>",
                
 
             );
@@ -102,7 +102,25 @@ class Problem_objections extends Controller
           if(!empty($res)){
             return view('ObjectionsView/ObjectionDetailsView')->with(compact('res'));;
         }else{
-            return array();
+            return view('admin/problemsObjectionsList');
+        }
+           
+       }else{
+          return view('admin/problemsObjectionsList');
+       }
+    }
+
+    public function getProblemById($id=null)
+    {
+
+        
+
+       if(!is_null($id)){
+          $res = AnnouncementProblem::getProblem_byId($id);
+          if(!empty($res)){
+            return view('ProblemsView/ProblemDetailsView')->with(compact('res'));;
+        }else{
+            return view('admin/problemsObjectionsList');
         }
            
        }else{
@@ -114,6 +132,18 @@ class Problem_objections extends Controller
 
         $data= $request->all();
         $res = Objection::updateObjectionStatus($data['id']);
+        
+        if($res){
+            return ['status'=>true];
+        }else{
+            return ['status'=>false];
+        }
+    }
+
+    public function objection_hahlata(Request $request){
+
+        $data= $request->all();
+        $res = Objection::updateObjection_hahlata($data['hahlata'],$data['id']);
         
         if($res){
             return ['status'=>true];

@@ -87,6 +87,7 @@ $(document).ready(function () {
                 "ajax": "/users_requests_json",
                 "columns": [
                     { "data": "full_name" },
+                    { "data": "user_ID" },
                     { "data": "mespar_helka" },
                     { "data": "mespar_gosh" },
                     { "data": "size" },

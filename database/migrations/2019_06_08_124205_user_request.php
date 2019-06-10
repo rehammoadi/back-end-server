@@ -17,13 +17,13 @@ class UserRequest extends Migration
         // all tables for db 
         Schema::create('user_request', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('app_user_id');
-            $table->string('user_ID');
-            $table->string('full_name');
-            $table->string('mespar_helka');
-            $table->string('mespar_gosh');
-            $table->string('size');
-            $table->string('description');
+            $table->integer('app_user_id')->nullable();
+            $table->string('user_ID')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('mespar_helka')->nullable();
+            $table->string('mespar_gosh')->nullable();
+            $table->string('size')->nullable();
+            $table->string('description')->nullable();
             $table->float('cost')->default(0);
             $table->timestamps();
         });

@@ -30,7 +30,7 @@
                         <div class="tab-pane active" id="profile">
                           <table class="table">
                             <tbody>
-
+                                
                               @if ( count( $res ) > 0 )
                                 
                                   <tr>
@@ -73,15 +73,26 @@
                                       </td>
                                   </tr>    
                                   <tr>
-                                      <td > אם טופל ללחוץ על מאושר </td>
+                                      <td > החלטה </td>
                                       <td >
                                           
-                                          <button type="submit"  class="btn btn-primary" onclick="objectionTobal({{$res[0]->id}})">
+                                         {{-- <button type="submit"  class="btn btn-primary" onclick="objectionTobal({{$res[0]->id}})">
                                              
                                            מאושר                        
                                              
-                                          </button>  
-                                          
+                                          </button>   --}}
+                                      <textarea style="width:100%;" type="text" name="hahlata" id="hahlata" > </textarea>    
+                                      </td>
+                                  </tr>    
+                                  <tr>
+                                      <td >  </td>
+                                      <td >
+                                          <input type="hidden" id="idObj" value="{{$res[0]->id}}"/>
+                                        <button type="submit"  class="btn btn-primary" onclick="objectionHahlata()">
+                                             
+                                          עדכן                        
+                                            
+                                         </button> 
                                       </td>
                                   </tr>    
                                                
@@ -112,49 +123,96 @@
           </div>
     
         </div>
+
+        <script>
+          function objectionTobal(id){
+  
+           
+                $.ajax({
+                  headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
+                  type: "POST",
+                  url: "/objectionProcessed",
+                  data:{id},
+                  async: false,
+                  success:function(data){
+               
+                  if(data.status == true){
+                    $('.tobalText').text('טופל');
+                    $('.tobalText').css('color','green');
+                    $('.tobalText').css('font-size','18px');
+                    $('.tobalText').css('font-weight','700');
+                   //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+  
+                  
+                    $.notify({
+                          icon: "add_alert",
+                          message: "הערעור התעדכן וטופל"
+  
+                        }, {
+                          type: 'success',
+                          timer: 3000,
+                          placement: {
+                            from: 'bottom',
+                            align: 'center'
+                          }
+                        });
+                  }
+                }
+                   });
+  
+                  
+          }
+  
+          function objectionHahlata(){
+       
+  
+           var hahlata  = $("#hahlata").val();
+           var id = $("#idObj").val();
+           console.log(hahlata,id);
+                $.ajax({
+                  headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
+                  type: "POST",
+                  url: "/objection_hahlata",
+                  data:{
+  
+                    "id":id
+                    "hahlata":hahlata
+                    },
+                  async: false,
+                  success:function(data){
+               
+                  if(data.status == true){
+                    $('.tobalText').text('טופל');
+                    $('.tobalText').css('color','green');
+                    $('.tobalText').css('font-size','18px');
+                    $('.tobalText').css('font-weight','700');
+                   //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+  
+                  
+                    $.notify({
+                          icon: "add_alert",
+                          message: "הערעור התעדכן וטופל"
+  
+                        }, {
+                          type: 'success',
+                          timer: 3000,
+                          placement: {
+                            from: 'bottom',
+                            align: 'center'
+                          }
+                        });
+                  }
+                }
+                   });
+  
+                  
+          }
+          </script> 
         @endsection
 
         @extends('layouts.footer')
 
-
-        <script>
-        function objectionTobal(id){
-
-         
-              $.ajax({
-                headers: {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 },
-                type: "POST",
-                url: "/objectionProcessed",
-                data:{id},
-                async: false,
-                success:function(data){
-             
-                if(data.status == true){
-                  $('.tobalText').text('טופל');
-                  $('.tobalText').css('color','green');
-                  $('.tobalText').css('font-size','18px');
-                  $('.tobalText').css('font-weight','700');
-                 //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
-
-                
-                  $.notify({
-                        icon: "add_alert",
-                        message: "הערעור התעדכן וטופל"
-
-                      }, {
-                        type: 'success',
-                        timer: 3000,
-                        placement: {
-                          from: 'bottom',
-                          align: 'center'
-                        }
-                      });
-                }
-              }
-                 });
-
-                
-        }
-        </script>

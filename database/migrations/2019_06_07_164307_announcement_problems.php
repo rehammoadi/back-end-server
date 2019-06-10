@@ -17,9 +17,9 @@ class AnnouncementProblems extends Migration
        Schema::create('announcementProblems', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('app_user_id');
-        $table->string('full_name');
-        $table->string('id_announcement');
-        $table->string('problem_text');
+        $table->string('full_name')->nullable();
+        $table->string('id_announcement')->nullable();
+        $table->string('problem_text')->nullable();
         $table->timestamps();
     });
     }

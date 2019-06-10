@@ -17,12 +17,13 @@ class Objection extends Migration
          // all tables for db 
          Schema::create('objection', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('block_number');
-            $table->string('name_req');
-            $table->string('cause_text');
-            $table->string('app_user_id');
-            $table->string('announcement_id');
+            $table->string('block_number')->nullable();
+            $table->string('name_req')->nullable();
+            $table->string('cause_text')->nullable();
+            $table->string('app_user_id')->nullable();
+            $table->string('announcement_id')->nullable();
             $table->integer('processed')->default(0);
+            $table->text('hahlata')->nullable();
             $table->timestamps();
         });
     }

@@ -163,4 +163,26 @@ class Announcements extends Model
         return $res;
 
     }
+
+    public static function do_search($data){
+
+        $sql_query = "select * from announcements Where 1<>1 ";
+
+        if(!empty($data["Gosh"])){
+            $sql_query.= " OR block_number = ? ";
+        }
+       
+        if(!empty($data["helka"])){
+            $sql_query .= " OR helka = ? ";
+        }
+
+         if(!empty($data["city"])){
+            $sql_query .= " OR city LIKE  '%" . $data['city'] . "%'";
+        }
+
+       
+        $res = DB::select($sql_query,array($data["Gosh"],$data["helka"]));
+
+       return $res;
+    }
 }

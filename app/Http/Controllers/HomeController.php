@@ -7,6 +7,7 @@ use App\Announcements;
 use App\ApiUser;
 use App\AnnouncementProblem;
 use App\Objection;
+use App\UserRequestsModel;
 
 class HomeController extends Controller
 {
@@ -57,7 +58,11 @@ class HomeController extends Controller
         //get the x last users regestred to the app
         $data['last_users']  = ApiUser::getLastRegUsers();
 
-     
+
+        //get the x last users regestred to the app
+        $data['user_requests']  = UserRequestsModel::count();
+
+        
          $data['user_problems_objections']  = AnnouncementProblem::count() + Objection::count();
 
 

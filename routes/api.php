@@ -32,3 +32,9 @@ Route::post('/new_objection','BaseApi@NewObjection');
 Route::post('/new_problem','BaseApi@NewProblemInAnnouncement');
 //new new_requestByUser 
 Route::post('/new_requestByUser','BaseApi@new_requestByUser');
+
+
+//search data
+Route::post('/search_data','BaseApi@search_data');
+
+

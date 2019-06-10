@@ -41,7 +41,9 @@ Route::get('/worker_settings/{id}' , "SettingsController@workerDetails");
 //objections with problems
 Route::get('/list_problem_objections' , "Problem_objections@getAllProblemsObjections");
 Route::get('/view_objection_details/{id}' , "Problem_objections@getObjectionById");
+Route::get('/view_problem_details/{id}' , "Problem_objections@getProblemById");
 Route::post('/objectionProcessed' , "Problem_objections@objectionProcessed");
+Route::post('/objection_hahlata' , "Problem_objections@objection_hahlata");
 
 //objections list json
 Route::get('/getObjections_json' , "Problem_objections@getObjections_json");
@@ -51,7 +53,7 @@ Route::get('/getProblems_json' , "Problem_objections@getProblems_json");
 //users requests
 Route::get('/users_requests' , "UserRequests@getAllUserRequests");
 Route::get('/users_requests_json' , "UserRequests@getAllUserRequests_json");
-
+Route::get('/view_request_details/{id}' , "UserRequests@getRequestById");
 
 //app_users_list
 Route::get('/app_users_list' , "AppUsers@appUsersList");
