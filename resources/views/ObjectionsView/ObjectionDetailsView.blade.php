@@ -54,13 +54,18 @@
 
                                   <tr>
                                       <td > טופל / לא טופל:</td>
-                                      <td class="tobalText" >
-                                        @if ($res[0]->processed == 0)
-                                            לא טופל
-                                            @else
-                                            טופל                               
-                                        @endif
-                                        
+                                      <td>
+                                                @switch($res[0]->processed)
+                                                @case(0)
+                                                      <input type="checkbox" id="status_of_obj" name="status_of_obj" value=" {{  $res[0]->processed   }}"><span class='tobalText'>לא טופל</span><br>
+                                                    @break
+                                            
+                                                @case(1)
+                                                     <input type="checkbox" id="status_of_obj" checked name="status_of_obj" value=" {{  $res[0]->processed   }}"><span class='tobalText'>טופל</span><br>
+                                                    @break
+                                            @endswitch
+
+
                                       </td>
                                   </tr>   
                                  
@@ -81,14 +86,14 @@
                                            מאושר                        
                                              
                                           </button>   --}}
-                                      <textarea style="width:100%;" type="text" name="hahlata" id="hahlata" > </textarea>    
+                                        <textarea style="width:100%;" type="text" name="hahlata" id="hahlata" > {{$res[0]->hahlata}}</textarea>    
                                       </td>
                                   </tr>    
                                   <tr>
                                       <td >  </td>
                                       <td >
                                           <input type="hidden" id="idObj" value="{{$res[0]->id}}"/>
-                                        <button type="submit"  class="btn btn-primary" onclick="objectionHahlata()">
+                                        <button type="submit"  class="btn btn-primary" id="objectionHahlata">
                                              
                                           עדכן                        
                                             
@@ -123,95 +128,6 @@
           </div>
     
         </div>
-
-        <script>
-          function objectionTobal(id){
-  
-           
-                $.ajax({
-                  headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   },
-                  type: "POST",
-                  url: "/objectionProcessed",
-                  data:{id},
-                  async: false,
-                  success:function(data){
-               
-                  if(data.status == true){
-                    $('.tobalText').text('טופל');
-                    $('.tobalText').css('color','green');
-                    $('.tobalText').css('font-size','18px');
-                    $('.tobalText').css('font-weight','700');
-                   //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
-  
-                  
-                    $.notify({
-                          icon: "add_alert",
-                          message: "הערעור התעדכן וטופל"
-  
-                        }, {
-                          type: 'success',
-                          timer: 3000,
-                          placement: {
-                            from: 'bottom',
-                            align: 'center'
-                          }
-                        });
-                  }
-                }
-                   });
-  
-                  
-          }
-  
-          function objectionHahlata(){
-       
-  
-           var hahlata  = $("#hahlata").val();
-           var id = $("#idObj").val();
-           console.log(hahlata,id);
-                $.ajax({
-                  headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   },
-                  type: "POST",
-                  url: "/objection_hahlata",
-                  data:{
-  
-                    "id":id
-                    "hahlata":hahlata
-                    },
-                  async: false,
-                  success:function(data){
-               
-                  if(data.status == true){
-                    $('.tobalText').text('טופל');
-                    $('.tobalText').css('color','green');
-                    $('.tobalText').css('font-size','18px');
-                    $('.tobalText').css('font-weight','700');
-                   //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
-  
-                  
-                    $.notify({
-                          icon: "add_alert",
-                          message: "הערעור התעדכן וטופל"
-  
-                        }, {
-                          type: 'success',
-                          timer: 3000,
-                          placement: {
-                            from: 'bottom',
-                            align: 'center'
-                          }
-                        });
-                  }
-                }
-                   });
-  
-                  
-          }
-          </script> 
         @endsection
 
         @extends('layouts.footer')

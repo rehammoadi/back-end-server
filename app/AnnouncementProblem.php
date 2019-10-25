@@ -36,4 +36,12 @@ class AnnouncementProblem extends Model
         $r = DB::select($sql_query,array($id));
         return $r;
     }
+
+    //update_problem
+
+    //update status for problem
+    public static function update_problem($id,$status){
+
+    
+    }
 }

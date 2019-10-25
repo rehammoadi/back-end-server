@@ -52,7 +52,27 @@
 
 
                                   <tr>
-                                      <td >  תאריך ערעור:</td>
+                                      <td > טופל / לא טופל:</td>
+                                      <td>
+                                                @switch($res[0]->status)
+                                                @case(0)
+                                                      <input type="checkbox" id="status_of_problem" name="status_of_problem" value=" {{  $res[0]->status   }}"><span class='tobalText'>לא טופל</span><br>
+                                                    @break
+                                            
+                                                @case(1)
+                                                     <input type="checkbox" id="status_of_problem" checked name="status_of_problem" value=" {{  $res[0]->status   }}"><span class='tobalText'>טופל</span><br>
+                                                    @break
+                                            @endswitch
+
+
+                                      </td>
+                                  </tr>   
+                             
+
+
+
+                                  <tr>
+                                      <td >  תאריך תקלה:</td>
                                       <td >
                                           
                                         {{date('Y-m-d', strtotime($res[0]->created_at))}}  
@@ -60,8 +80,8 @@
                                       </td>
                                   </tr>    
                                  
-                                               
-                             
+                                           
+                               
 
 
                                 

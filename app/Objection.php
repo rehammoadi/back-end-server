@@ -24,7 +24,7 @@ class Objection extends Model
     
     //get objections to dataTable
     public static function getObjections($start = 0 , $length = 20 , $search=null){
-        $sql_query = "SELECT o.id  , au.name as name, o.block_number as block_number ,o.announcement_id , o.created_at ,o.status FROM objection o 
+        $sql_query = "SELECT o.id  , au.name as name, o.block_number as block_number ,o.announcement_id , o.created_at ,o.processed FROM objection o 
                       inner JOIN app_users au on(au.id = o.app_user_id)";
         $params = array();
         $sql_query .=" limit $length OFFSET $start";
@@ -44,9 +44,9 @@ class Objection extends Model
 
 
             //update objections status
-    public static function updateObjectionStatus($id){
-        $sql_query = "UPDATE `objection` SET `processed`=1 WHERE id = ?";
-        $r = DB::statement($sql_query,array($id));
+    public static function updateObjectionStatus($status,$id){
+        $sql_query = "UPDATE `objection` SET `processed`= ? WHERE id = ?";
+        $r = DB::statement($sql_query,array($status,$id));
         return $r;
     }
             //update objections status

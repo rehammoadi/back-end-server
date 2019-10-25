@@ -41,7 +41,7 @@ class Problem_objections extends Controller
                 "block_number" => $row->block_number,
                 "create_date" => $row->created_at,
                 "action"=> "<a href='/view_objection_details/$row->id'>פרטים</a>",
-                "status"=>$row->status==1 ? "טופל" : "לא טופל"
+                "processed"=>$row->processed==1 ? "טופל" : "לא טופל"
             );
         }
         $data = json_encode(
@@ -134,7 +134,7 @@ class Problem_objections extends Controller
     public function objectionProcessed(Request $request){
 
         $data= $request->all();
-        $res = Objection::updateObjectionStatus($data['id']);
+        $res = Objection::updateObjectionStatus($data['strState'],$data['obj_id']);
         
         if($res){
             return ['status'=>true];
@@ -147,6 +147,19 @@ class Problem_objections extends Controller
 
         $data= $request->all();
         $res = Objection::updateObjection_hahlata($data['hahlata'],$data['id']);
+        
+        if($res){
+            return ['status'=>true];
+        }else{
+            return ['status'=>false];
+        }
+    }
+
+
+    public function update_problem(Request $request){
+
+        $data= $request->all();
+        $res = AnnouncementProblem::update_problem($data['strState'],$data['problem_id']);
         
         if($res){
             return ['status'=>true];
