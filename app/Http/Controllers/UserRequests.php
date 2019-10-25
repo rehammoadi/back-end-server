@@ -43,7 +43,9 @@ class UserRequests extends Controller
                 "size" => $row->size,
                 "short_text" => $row->short_text,
                 "created_at" => $row->created_at,
-                "action"=> "<a href='/view_request_details/$row->id'>פרטים</a>");
+                "action"=> "<a href='/view_request_details/$row->id'>פרטים</a>",
+                "req_status"=>$row->created_at==1 ? "טופל" : "לא טופל",
+            );
         }
         $data = json_encode(
             array(

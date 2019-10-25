@@ -25,7 +25,7 @@ class UserRequestsModel extends Model
      
      //get objections to dataTable
      public static function getUsersRequest($start = 0 , $length = 20 , $search=null){
-         $sql_query = "SELECT us.id , us.user_ID , au.name , us.mespar_helka , us.mespar_gosh , us.size ,concat(SUBSTRING(us.description , 1, 15),'...') AS short_text , us.created_at  FROM user_request us 
+         $sql_query = "SELECT us.id , us.user_ID , au.name , us.mespar_helka , us.mespar_gosh , us.size ,concat(SUBSTRING(us.description , 1, 15),'...') AS short_text , us.created_at  , us.status FROM user_request us 
          inner JOIN app_users au on(au.id = us.app_user_id)";
          $params = array();
          $sql_query .=" limit $length OFFSET $start";

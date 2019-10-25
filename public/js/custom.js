@@ -94,6 +94,7 @@ $(document).ready(function () {
                     { "data": "short_text" },
                     { "data": "created_at" },
                     { "data": "action" },
+                    { "data": "req_status" },
                 ]
                 } );
         
