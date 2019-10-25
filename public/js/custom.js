@@ -154,4 +154,34 @@ $(document).ready(function () {
                         */
                     ]
                     } );
+
+
+                    if($("#status_of_req").length>0){
+
+                        $("input:checkbox").change(function() { 
+                            if($(this).is(":checked")) { 
+                                $.ajax({
+                                    url: '/update_request_details',
+                                    type: 'post',
+                                    data: { "_token": $("#_token").val(),req_id:$("#req_id").val(), strState:"1" }
+                                });
+                                    
+                                $("#status_text").text("טופל");
+
+                            } else {
+                                $.ajax({
+                                    url: '/update_request_details',
+                                    type: 'post',
+                                    data: { 
+                                          "_token": $("#_token").val(),
+                                          req_id:$("#req_id").val(),
+                                          strState:"0"
+                                         }
+                                });
+
+                                $("#status_text").text("לא טופל");
+                            }
+                        }); 
+                    }
+                 
 });

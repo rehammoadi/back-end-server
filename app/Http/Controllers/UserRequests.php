@@ -44,7 +44,7 @@ class UserRequests extends Controller
                 "short_text" => $row->short_text,
                 "created_at" => $row->created_at,
                 "action"=> "<a href='/view_request_details/$row->id'>פרטים</a>",
-                "req_status"=>$row->created_at==1 ? "טופל" : "לא טופל",
+                "req_status"=>$row->status==1 ? "טופל" : "לא טופל",
             );
         }
         $data = json_encode(
@@ -61,17 +61,27 @@ class UserRequests extends Controller
 
     public function getRequestById($id=null)
     {
-
        if(!is_null($id)){
           $res = UserRequestsModel::getRequest_by_id($id);
           if(!empty($res)){
             return view('requestDetailsView')->with(compact('res'));;
         }else{
-            return view('admin/problemsObjectionsList');
+            return view('admin/users_requestsList');
         }
            
        }else{
-          return view('admin/problemsObjectionsList');
+        return view('admin/users_requestsList');
        }
     }
+
+    public function update_RequestById(Request $request)
+    {
+
+        $post = $request->all();
+        if(isset($post['strState']) && isset($post['req_id'])){
+            $res = UserRequestsModel::update_Request_by_id($post['strState'],$post['req_id']);
+            return $res;
+        }
+     }      
+    
 }

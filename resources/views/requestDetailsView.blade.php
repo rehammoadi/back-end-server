@@ -12,6 +12,8 @@
                       <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
                           <span class="nav-tabs-title"> 
+                            <input type="hidden" value="{{ csrf_token() }}" id="_token" />
+                            <input type="hidden" value="{{ $res[0]->id }}" id="req_id" />
                               @if ( count( $res ) > 0 )
                               פרטי משתמש :  {{ $res[0]->name }}
                               @endif
@@ -73,9 +75,27 @@
                                     <td >{{ $res[0]->description   }}</td>
                                 </tr>  
                              
+                                <tr>
+                                  <td >סטטוס:</td>
+                                  <td >
+
+                                      @switch($res[0]->status)
+                                      @case(0)
+                                            <input type="checkbox" id="status_of_req" name="status_of_req" value=" {{  $res[0]->status   }}"><span id='status_text'>לא טופל</span><br>
+                                          @break
+                                  
+                                      @case(1)
+                                           <input type="checkbox" id="status_of_req" checked name="status_of_req" value=" {{  $res[0]->status   }}"><span id='status_text'>טופל</span><br>
+                                          @break
+                                  @endswitch
+                                     
+                                    
+                                   
+                                  
+                                  </td>
+                              </tr>  
 
 
-                                
                               @endif
                               
 

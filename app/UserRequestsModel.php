@@ -43,6 +43,15 @@ class UserRequestsModel extends Model
          return $r;
      }
 
+     public static function update_Request_by_id($status,$req_id){
+        $sql_query = "UPDATE `user_request` SET `status`=? WHERE `id` =?";
+
+        $r = DB::update($sql_query,array($status,$req_id));
+        return $r;
+    }
+
+     
+
 
 
 

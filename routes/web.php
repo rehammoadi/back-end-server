@@ -54,6 +54,7 @@ Route::get('/getProblems_json' , "Problem_objections@getProblems_json");
 Route::get('/users_requests' , "UserRequests@getAllUserRequests");
 Route::get('/users_requests_json' , "UserRequests@getAllUserRequests_json");
 Route::get('/view_request_details/{id}' , "UserRequests@getRequestById");
+Route::post('/update_request_details/' , "UserRequests@update_RequestById");
 
 //app_users_list
 Route::get('/app_users_list' , "AppUsers@appUsersList");
