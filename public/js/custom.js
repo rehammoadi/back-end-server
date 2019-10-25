@@ -57,6 +57,7 @@ $(document).ready(function () {
             { "data": "block_number" },
             { "data": "create_date" },
             { "data": "action" },
+            { "data": "status" },
         ]
         } );
 
@@ -76,6 +77,7 @@ $(document).ready(function () {
                 { "data": "short_report" },
                 { "data": "create_date" },
                 { "data": "action" },
+                { "data": "status" },
             ]
             } );
 

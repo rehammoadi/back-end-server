@@ -24,7 +24,7 @@ class Objection extends Model
     
     //get objections to dataTable
     public static function getObjections($start = 0 , $length = 20 , $search=null){
-        $sql_query = "SELECT o.id  , au.name as name, o.block_number as block_number ,o.announcement_id , o.created_at FROM objection o 
+        $sql_query = "SELECT o.id  , au.name as name, o.block_number as block_number ,o.announcement_id , o.created_at ,o.status FROM objection o 
                       inner JOIN app_users au on(au.id = o.app_user_id)";
         $params = array();
         $sql_query .=" limit $length OFFSET $start";

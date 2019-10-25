@@ -19,7 +19,7 @@ class AnnouncementProblem extends Model
 
     public  static function getProblemsData($start = 0 , $length = 20 , $search=null)
     {
-        $sql_query = "SELECT ap.id , au.name, ap.id_announcement as announcement_id ,SUBSTRING(ap.problem_text, 1, 15) AS short_report, ap.created_at FROM announcementProblems ap
+        $sql_query = "SELECT ap.id , au.name, ap.id_announcement as announcement_id ,SUBSTRING(ap.problem_text, 1, 15) AS short_report, ap.created_at ,ap.status FROM announcementProblems ap
                       inner JOIN app_users au on(au.id = ap.app_user_id)";
         //$params = array();
         $sql_query .=" limit $length OFFSET $start";

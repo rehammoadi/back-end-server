@@ -40,7 +40,9 @@ class Problem_objections extends Controller
                 "announcement_number" => $row->announcement_id,
                 "block_number" => $row->block_number,
                 "create_date" => $row->created_at,
-                "action"=> "<a href='/view_objection_details/$row->id'>פרטים</a>");
+                "action"=> "<a href='/view_objection_details/$row->id'>פרטים</a>",
+                "status"=>$row->status==1 ? "טופל" : "לא טופל"
+            );
         }
         $data = json_encode(
             array(
@@ -77,6 +79,7 @@ class Problem_objections extends Controller
                 "short_report" => $row->short_report,
                 "create_date" => $row->created_at,
                 "action"=> "<a href='/view_problem_details/$row->id'>פרטים</a>",
+                "status"=>$row->status==1 ? "טופל" : "לא טופל"
                
 
             );
