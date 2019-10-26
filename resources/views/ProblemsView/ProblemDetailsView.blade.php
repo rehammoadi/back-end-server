@@ -13,9 +13,10 @@
                       <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
                           <span class="nav-tabs-title"> 
-                           
+                        
                               @if ( count( $res ) > 0 )
                              פרטי תקלה  :  {{ $res[0]->name }}
+                             <input type="hidden" id="problem_id" value="{{$res[0]->id}}">
                               @endif
                           
                           
@@ -56,11 +57,11 @@
                                       <td>
                                                 @switch($res[0]->status)
                                                 @case(0)
-                                                      <input type="checkbox" id="status_of_problem" name="status_of_problem" value=" {{  $res[0]->status   }}"><span class='tobalText'>לא טופל</span><br>
+                                                      <input type="checkbox" id="status_of_problem" name="status_of_problem" ><span class='tobalText'>לא טופל</span><br>
                                                     @break
                                             
                                                 @case(1)
-                                                     <input type="checkbox" id="status_of_problem" checked name="status_of_problem" value=" {{  $res[0]->status   }}"><span class='tobalText'>טופל</span><br>
+                                                     <input type="checkbox" id="status_of_problem" checked name="status_of_problem" ><span class='tobalText'>טופל</span><br>
                                                     @break
                                             @endswitch
 

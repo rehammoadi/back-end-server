@@ -156,10 +156,11 @@ class Problem_objections extends Controller
     }
 
 
-    public function update_problem(Request $request){
+    public function update_problem_status(Request $request){
 
         $data= $request->all();
-        $res = AnnouncementProblem::update_problem($data['strState'],$data['problem_id']);
+      
+        $res = AnnouncementProblem::update_problem($data['strState'],$data['id']);
         
         if($res){
             return ['status'=>true];

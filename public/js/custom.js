@@ -276,7 +276,7 @@ $(document).ready(function () {
               
                               
                       }
-                            //update hahlata button
+                     //update hahlata button
                       $("#objectionHahlata").on("click",function(){
                         objectionHahlata();
                       });
@@ -366,4 +366,89 @@ $(document).ready(function () {
                         }); 
                     }
                  
+
+
+                        //status_of_problem
+                        if($("#status_of_problem").length>0){
+                        
+                            $("input:checkbox").change(function() { 
+                                if($(this).is(":checked")) { 
+                                    $.ajax({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        },
+                                        type: "POST",
+                                        url: "/update_problem_status",
+                                        
+                                        data: { id:$("#problem_id").val(), strState:"1" }  ,
+                                            success:function(data){
+                               
+                                                if(data.status == true){
+                                                            $('.tobalText').text('טופל');
+                                                            $('.tobalText').css('color','green');
+                                                            $('.tobalText').css('font-size','18px');
+                                                            $('.tobalText').css('font-weight','700');
+                                                        //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+                                
+                                                
+                                                            $.notify({
+                                                                icon: "add_alert",
+                                                                message: "התקלה טופלה"
+                                        
+                                                                }, {
+                                                                type: 'success',
+                                                                timer: 3000,
+                                                                placement: {
+                                                                    from: 'bottom',
+                                                                    align: 'center'
+                                                                }
+                                                                });
+                                                        }//
+                                        }
+                                    });
+    
+                                } else {
+                                    $.ajax({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        },
+                                        type: "POST",
+                                         url: "/update_problem_status",
+                                        data: { 
+                                              
+                                              id:$("#problem_id").val(),
+                                              strState:"0",
+                                             
+                                             },
+                                             success:function(data){
+                               
+                                                if(data.status == true){
+                                                            $('.tobalText').text('לא טופל');
+                                                            $('.tobalText').css('color','green');
+                                                            $('.tobalText').css('font-size','18px');
+                                                            $('.tobalText').css('font-weight','700');
+                                                        //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+                                
+                                                
+                                                            $.notify({
+                                                                icon: "add_alert",
+                                                                message: "עודכן ללא טופל"
+                                        
+                                                                }, {
+                                                                type: 'success',
+                                                                timer: 3000,
+                                                                placement: {
+                                                                    from: 'bottom',
+                                                                    align: 'center'
+                                                                }
+                                                                });
+                                                        }//
+                                        }
+                                    });
+    
+                                    $("#status_text").text("לא טופל");
+                                }
+                            }); 
+                        }
+                    
 });

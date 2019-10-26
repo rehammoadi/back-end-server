@@ -44,6 +44,7 @@ Route::get('/view_objection_details/{id}' , "Problem_objections@getObjectionById
 Route::get('/view_problem_details/{id}' , "Problem_objections@getProblemById");
 Route::post('/objectionProcessed' , "Problem_objections@objectionProcessed");
 Route::post('/objection_hahlata' , "Problem_objections@objection_hahlata");
+Route::post('/update_problem_status' , "Problem_objections@update_problem_status");
 
 //objections list json
 Route::get('/getObjections_json' , "Problem_objections@getObjections_json");

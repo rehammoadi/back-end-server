@@ -40,8 +40,9 @@ class AnnouncementProblem extends Model
     //update_problem
 
     //update status for problem
-    public static function update_problem($id,$status){
-
-    
+    public static function update_problem($status,$id){
+        $sql_query = "UPDATE `announcementProblems` SET `status`= ? WHERE id = ?";
+        $r = DB::statement($sql_query,array($status,$id));
+        return $r;
     }
 }
